@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,20 +11,16 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            const int percentConverter = 100;
-            float health;
-            float armor;
-            float damage;
-
-            Console.Write("Input HP points: ");
-            health = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Input Armor points: ");
-            armor = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Input Damage points: ");
-            damage = Convert.ToInt32(Console.ReadLine());
-
-            health -= damage * armor / percentConverter;
-            Console.WriteLine($"You've got hitten by {damage} power, you have {health} points left");
+            Random rand = new Random();
+            int randomNumber = rand.Next(0, 10);
+            Console.WriteLine(randomNumber);
+            int userInput;
+            do
+            {
+                userInput = Convert.ToInt32(Console.ReadLine());
+                if (userInput == randomNumber) Console.WriteLine("You are right!");
+                else { Console.WriteLine("You are wrong"); }
+            } while (userInput != randomNumber);
         }
     }
 }
