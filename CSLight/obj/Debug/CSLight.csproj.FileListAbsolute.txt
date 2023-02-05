@@ -1,0 +1,8 @@
+C:\Users\2010r\Desktop\WebDev\C#\CSLight\CSLight\bin\Debug\CSLight.exe.config
+C:\Users\2010r\Desktop\WebDev\C#\CSLight\CSLight\bin\Debug\CSLight.exe
+C:\Users\2010r\Desktop\WebDev\C#\CSLight\CSLight\bin\Debug\CSLight.pdb
+C:\Users\2010r\Desktop\WebDev\C#\CSLight\CSLight\obj\Debug\CSLight.csproj.AssemblyReference.cache
+C:\Users\2010r\Desktop\WebDev\C#\CSLight\CSLight\obj\Debug\CSLight.csproj.SuggestedBindingRedirects.cache
+C:\Users\2010r\Desktop\WebDev\C#\CSLight\CSLight\obj\Debug\CSLight.csproj.CoreCompileInputs.cache
+C:\Users\2010r\Desktop\WebDev\C#\CSLight\CSLight\obj\Debug\CSLight.exe
+C:\Users\2010r\Desktop\WebDev\C#\CSLight\CSLight\obj\Debug\CSLight.pdb
