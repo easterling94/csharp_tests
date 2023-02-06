@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Runtime.ExceptionServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace CSLight
 {
@@ -98,18 +92,45 @@ namespace CSLight
                         Console.WriteLine(arrayToModify.Length + ", " + arrayToModify[2]);*/
 
             // method overloading
-            int[] array = { 1, 2, 3, 4, 5 };
-            Console.WriteLine(string.Join(", ", array));
-            Console.WriteLine(ResizeArr(array, 6).Length);
+            /*            int[] array = { 1, 2, 3, 4, 5 };
+                        Console.WriteLine(string.Join(", ", array));
+                        Console.WriteLine(ResizeArr(array, 6).Length);
 
-            int[,] array2 = new int[5, 5];
-            Console.WriteLine(array2.Length);
-            array2 = ResizeArr(array2, 10, 10);
-            Console.WriteLine(array2.Length);
+                        int[,] array2 = new int[5, 5];
+                        Console.WriteLine(array2.Length); // before resize
+                        array2 = ResizeArr(array2, 10, 10);
+                        Console.WriteLine(array2.Length); // after resize
 
-            int[] intArr = new int[] { 2, 3, 4 };
-            Action<int> action = new Action<int>(ShowSquares);
-            Array.ForEach(intArr, action);
+                        int[] intArr = new int[] { 2, 3, 4 };
+                        Action<int> action = new Action<int>(ShowSquares);
+                        Array.ForEach(intArr, action);*/
+
+            // List collections
+            List<int> numbers = new List<int>();
+            numbers.Add(1);
+            numbers.Add(2);
+            numbers.Add(3);
+            numbers.Add(4);
+            numbers.Add(5);
+
+            numbers.AddRange(new int[] { 6, 7 }); // adds with shift "6" and "7" 
+
+            numbers.RemoveAt(4); // removes "5"
+
+            numbers.Add(4);
+
+            numbers.Remove(4); // removes first occurence of "4"
+
+            numbers.Insert(numbers.Count + 1, 0); // position if insertion can be any index
+
+            Console.WriteLine($"\n{numbers.Count} is items q-ty of this List \n");
+
+            Console.WriteLine($"FYI: number 7 is currently at the position of {numbers.IndexOf(7) + 1}");
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                Console.WriteLine(numbers[i]);
+            }
 
         }
         static void WriteError(string text, ConsoleColor color = ConsoleColor.Green)
@@ -166,8 +187,9 @@ namespace CSLight
             array = tempArr;
             return array;
         }
-        private static void ShowSquares(int val) {
-            Console.WriteLine("{0:f} squared = {1:d}", val, val*val) ;
+        private static void ShowSquares(int val)
+        {
+            Console.WriteLine("{0:f} squared = {1:d}", val, val * val);
         }
     }
 }
