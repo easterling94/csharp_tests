@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSLight
 {
@@ -106,32 +107,89 @@ namespace CSLight
                         Array.ForEach(intArr, action);*/
 
             // List collections
-            List<int> numbers = new List<int>();
-            numbers.Add(1);
-            numbers.Add(2);
-            numbers.Add(3);
-            numbers.Add(4);
-            numbers.Add(5);
+            /*            List<int> numbers = new List<int>();
+                        numbers.Add(1);
+                        numbers.Add(2);
+                        numbers.Add(3);
+                        numbers.Add(4);
+                        numbers.Add(5);
 
-            numbers.AddRange(new int[] { 6, 7 }); // adds with shift "6" and "7" 
+                        numbers.AddRange(new int[] { 6, 7 }); // adds with shift "6" and "7" 
 
-            numbers.RemoveAt(4); // removes "5"
+                        numbers.RemoveAt(4); // removes "5"
 
-            numbers.Add(4);
+                        numbers.Add(4);
 
-            numbers.Remove(4); // removes first occurence of "4"
+                        numbers.Remove(4); // removes first occurence of "4"
 
-            numbers.Insert(numbers.Count + 1, 0); // position if insertion can be any index
+                        numbers.Insert(numbers.Count, 0); // any position can be an index insertion
 
-            Console.WriteLine($"\n{numbers.Count} is items q-ty of this List \n");
+                        Console.WriteLine($"\n{numbers.Count} is items q-ty of this List \n");
 
-            Console.WriteLine($"FYI: number 7 is currently at the position of {numbers.IndexOf(7) + 1}");
+                        Console.WriteLine($"FYI: number 7 is currently at the position of {numbers.IndexOf(7) + 1}");
 
-            for (int i = 0; i < numbers.Count; i++)
+                        for (int i = 0; i < numbers.Count; i++)
+                        {
+                            Console.WriteLine(numbers[i]);
+                        }*/
+
+            // FIFO, Queue
+            /*            Queue<string> patients = new Queue<string>();
+                        patients.Enqueue("Vasya");
+                        patients.Enqueue("Leha");
+                        patients.Enqueue("Nik");
+                        patients.Enqueue("Roman");
+
+
+                        foreach (var patient in patients)
+                        {
+                            Console.WriteLine(patient);
+                        }
+
+                        Console.WriteLine($"\n{patients.Dequeue()} is now in the cabinet\n");
+
+                        foreach (var patient in patients)
+                        {
+                            Console.WriteLine($"{patient} is still waiting");
+                        }
+
+                        Console.WriteLine($"\nThe next in line is {patients.Peek()} \n");
+
+                        Queue<int> count = new Queue<int>();
+                        count.Enqueue(1);
+                        count.Enqueue(2);
+                        count.Enqueue(3);
+                        count.Enqueue(4);
+
+                        QueueOrStackToConsole(count);*/
+
+            //LIFO, Stack
+            /*            Stack<int> numbers = new Stack<int>();
+                        numbers.Push(1); // last to console.write
+                        numbers.Push(2);
+                        numbers.Push(3);
+                        numbers.Push(4);
+                        numbers.Push(5); // first to console.write
+                        QueueOrStackToConsole(numbers);
+                        Console.WriteLine(numbers.Peek());
+                        Console.WriteLine(numbers.Pop());*/
+
+            // Dictionary
+
+            Dictionary<string, string> countriesCapitals = new Dictionary<string, string>();
+            countriesCapitals.Add("RU", "Moscow");
+            countriesCapitals.Add("UA", "Kiev");
+            countriesCapitals.Add("BY", "Minsk");
+
+            if (countriesCapitals.ContainsKey("RU"))
             {
-                Console.WriteLine(numbers[i]);
+                Console.WriteLine(countriesCapitals["RU"]);
             }
 
+            foreach (var capital in countriesCapitals) 
+            {
+                Console.WriteLine($"{capital.Value} is the capital of {capital.Key}");
+            }
         }
         static void WriteError(string text, ConsoleColor color = ConsoleColor.Green)
         {
@@ -190,6 +248,36 @@ namespace CSLight
         private static void ShowSquares(int val)
         {
             Console.WriteLine("{0:f} squared = {1:d}", val, val * val);
+        }
+        static void QueueOrStackToConsole(Stack<int> arr)
+        {
+            foreach (var number in arr)
+            {
+                if (arr.ElementAt(number - 1) == arr.Count)
+                {
+                    Console.Write(number + "\n");
+                }
+                else
+                {
+                    Console.Write(number + ", ");
+                }
+
+            }
+        }
+        static void QueueOrStackToConsole(Queue<int> arr)
+        {
+            foreach (var number in arr)
+            {
+                if (arr.ElementAt(number - 1) == arr.Count)
+                {
+                    Console.Write(number + "\n");
+                }
+                else
+                {
+                    Console.Write(number + ", ");
+                }
+
+            }
         }
     }
 }
