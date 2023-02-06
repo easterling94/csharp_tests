@@ -67,43 +67,43 @@ namespace CSLight
 
             // functions in C#
             /*            Console.WriteLine("Request for connection");
-                        WriteError("No connection", ConsoleColor.Red);
-                        WriteError("Check internet connection", ConsoleColor.DarkYellow);
-                        WriteError("Try to reboot router");
+                        LearningFunctions.WriteError("No connection", ConsoleColor.Red);
+                        LearningFunctions.WriteError("Check internet connection", ConsoleColor.DarkYellow);
+                        LearningFunctions.WriteError("Try to reboot router");
 
-                        Console.WriteLine(Sum(10, 12));
+                        Console.WriteLine(LearningFunctions.Sum(10, 12));
 
                         int sumOut;
-                        AddWithOut(out sumOut, 20, 20);
+                        LearningFunctions.AddWithOut(out sumOut, 20, 20);
                         Console.WriteLine(sumOut + " added with out");
 
                         int sumRef = 0;
-                        AddWithRef(ref sumRef, 30, 30);
+                        LearningFunctions.AddWithRef(ref sumRef, 30, 30);
                         Console.WriteLine(sumRef + " added with ref");
 
                         // difference is when using ref we have to initialize variable, out creates memory storage by itself
 
                         int[] array = new int[5];
-                        EdditArray(array, 2, 5);
+                        LearningFunctions.EdditArray(array, 2, 5);
                         Console.WriteLine(array[2]);
                         // arrays are used as linked objects w/o refs or outs 
 
-                        int[] arrayToModify = new int [5];
-                        arrayToModify = EdditArrayWithModification(arrayToModify, 2, 5);
+                        int[] arrayToModify = new int[5];
+                        arrayToModify = LearningFunctions.EdditArrayWithModification(arrayToModify, 2, 5);
                         Console.WriteLine(arrayToModify.Length + ", " + arrayToModify[2]);*/
 
             // method overloading
             /*            int[] array = { 1, 2, 3, 4, 5 };
                         Console.WriteLine(string.Join(", ", array));
-                        Console.WriteLine(ResizeArr(array, 6).Length);
+                        Console.WriteLine(LearningFunctions.ResizeArr(array, 6).Length);
 
                         int[,] array2 = new int[5, 5];
                         Console.WriteLine(array2.Length); // before resize
-                        array2 = ResizeArr(array2, 10, 10);
+                        array2 = LearningFunctions.ResizeArr(array2, 10, 10);
                         Console.WriteLine(array2.Length); // after resize
 
                         int[] intArr = new int[] { 2, 3, 4 };
-                        Action<int> action = new Action<int>(ShowSquares);
+                        Action<int> action = new Action<int>(LearningFunctions.ShowSquares);
                         Array.ForEach(intArr, action);*/
 
             // List collections
@@ -161,7 +161,7 @@ namespace CSLight
                         count.Enqueue(3);
                         count.Enqueue(4);
 
-                        QueueOrStackToConsole(count);*/
+                        LearningFunctions.QueueOrStackToConsole(count);*/
 
             //LIFO, Stack
             /*            Stack<int> numbers = new Stack<int>();
@@ -170,58 +170,96 @@ namespace CSLight
                         numbers.Push(3);
                         numbers.Push(4);
                         numbers.Push(5); // first to console.write
-                        QueueOrStackToConsole(numbers);
+                        LearningFunctions.QueueOrStackToConsole(numbers);
                         Console.WriteLine(numbers.Peek());
                         Console.WriteLine(numbers.Pop());*/
 
             // Dictionary
+            /*            Dictionary<string, string> countriesCapitals = new Dictionary<string, string>();
+                        countriesCapitals.Add("RU", "Moscow");
+                        countriesCapitals.Add("UA", "Kiev");
+                        countriesCapitals.Add("BY", "Minsk");
 
-            Dictionary<string, string> countriesCapitals = new Dictionary<string, string>();
-            countriesCapitals.Add("RU", "Moscow");
-            countriesCapitals.Add("UA", "Kiev");
-            countriesCapitals.Add("BY", "Minsk");
+                        if (countriesCapitals.ContainsKey("RU"))
+                        {
+                            Console.WriteLine(countriesCapitals["RU"]);
+                        }
 
-            if (countriesCapitals.ContainsKey("RU"))
-            {
-                Console.WriteLine(countriesCapitals["RU"]);
-            }
+                        foreach (var capital in countriesCapitals)
+                        {
+                            Console.WriteLine($"{capital.Value} is the capital of {capital.Key}");
+                        }*/
 
-            foreach (var capital in countriesCapitals) 
-            {
-                Console.WriteLine($"{capital.Value} is the capital of {capital.Key}");
-            }
+            // OOP
+            /*            Car ferrari = new Car("F40", 200, 20);
+                        ferrari.ShowTechnicalPassword();
+
+                        Car ford = new Car();
+                        ford.ShowTechnicalPassword();
+
+                        Car lada = new Car("kalina", -10, 30);
+                        lada.ShowTechnicalPassword();
+
+                        Car[] cars = { new Car("renault", 110, 3), new Car("tayota", 400, 5) };
+                        foreach (var car in cars)
+                        {
+                            car.ShowTechnicalPassword();
+                        }*/
+
+            // OOP has-a
+            /*            Performer worker1 = new Performer("Nik");
+                        Performer worker2 = new Performer("John");
+
+                        Task[] tasks = { new Task(worker1, "Build house"), new Task(worker2, "Buy groceries") };
+
+                        Board schedule = new Board(tasks);
+                        schedule.ShowAllTasks();*/
+
+            // OOP is-a
+            Knight warrior1 = new Knight(120, 30, 40);
+            Barbarian warrior2 = new Barbarian(100, 20, 30, 2);
+
+            warrior1.TakeDamage(80);
+            warrior2.TakeDamage(80);
+
+            Console.Write("Knight:");
+            warrior1.ShowInfo();
+            Console.Write("Barbarian:");
+            warrior2.ShowInfo();
         }
-        static void WriteError(string text, ConsoleColor color = ConsoleColor.Green)
+    }
+    class LearningFunctions
+    {
+        public static void WriteError(string text, ConsoleColor color = ConsoleColor.Green)
         {
             ConsoleColor defaultColor = Console.ForegroundColor;
             Console.ForegroundColor = color;
             Console.WriteLine(text);
             Console.ForegroundColor = defaultColor;
         }
-        static int Sum(int x, int y)
+        public static int Sum(int x, int y)
         {
             return x + y;
         }
-
-        static void AddWithOut(out int sum, int x, int y)
+        public static void AddWithOut(out int sum, int x, int y)
         {
             sum = x + y;
         }
-        static void AddWithRef(ref int sum, int x, int y)
+        public static void AddWithRef(ref int sum, int x, int y)
         {
             sum = x + y;
         }
-        static void EdditArray(int[] array, int index, int value)
+        public static void EdditArray(int[] array, int index, int value)
         {
             array[index] = value;
         }
-        static int[] EdditArrayWithModification(int[] array, int index, int value)
+        public static int[] EdditArrayWithModification(int[] array, int index, int value)
         {
             array = new int[6];
             array[index] = value;
             return array;
         }
-        static int[] ResizeArr(int[] array, int size)
+        public static int[] ResizeArr(int[] array, int size)
         {
             int[] tempArr = new int[size];
             for (int i = 0; i < array.Length; i++)
@@ -232,7 +270,7 @@ namespace CSLight
             Console.WriteLine();
             return tempArr;
         }
-        static int[,] ResizeArr(int[,] array, int x, int y)
+        public static int[,] ResizeArr(int[,] array, int x, int y)
         {
             int[,] tempArr = new int[x, y];
             for (int i = 0; i < array.GetLength(0); i++)
@@ -245,11 +283,11 @@ namespace CSLight
             array = tempArr;
             return array;
         }
-        private static void ShowSquares(int val)
+        public static void ShowSquares(int val)
         {
             Console.WriteLine("{0:f} squared = {1:d}", val, val * val);
         }
-        static void QueueOrStackToConsole(Stack<int> arr)
+        public static void QueueOrStackToConsole(Stack<int> arr)
         {
             foreach (var number in arr)
             {
@@ -264,7 +302,7 @@ namespace CSLight
 
             }
         }
-        static void QueueOrStackToConsole(Queue<int> arr)
+        public static void QueueOrStackToConsole(Queue<int> arr)
         {
             foreach (var number in arr)
             {
@@ -278,6 +316,127 @@ namespace CSLight
                 }
 
             }
+        }
+    }
+    class Car
+    {
+        public string Name = "unspecified"; // public uses "Name"
+        public int MaxHorsepower;
+        public int Age;
+
+        private int _horsepower = 100; // private uses "_name"
+
+        public Car(string name, int maxHorsepower, int age)
+        {
+            if (maxHorsepower < 0)
+            {
+                MaxHorsepower = 1;
+            }
+            else
+            {
+                MaxHorsepower = maxHorsepower;
+            }
+            Name = name;
+            Age = age;
+        }
+
+        public Car()
+        { }
+
+
+        public void ShowTechnicalPassword()
+        {
+            Console.WriteLine($"This {Name} has {_horsepower} default power, {MaxHorsepower} max power, age {Age}\n");
+        }
+
+    }
+    class Performer
+    {
+        public string Name;
+        public Performer(string name)
+        {
+            Name = name;
+        }
+    }
+    class Board
+    {
+        public Task[] Tasks;
+
+        public Board(Task[] tasks)
+        {
+            Tasks = tasks;
+        }
+
+        public void ShowAllTasks()
+        {
+            for (int i = 0; i < Tasks.Length; i++)
+            {
+                Tasks[i].ShowInfo();
+            }
+        }
+    }
+    class Task
+    {
+        public Performer Worker;
+        public string Description;
+
+        public Task(Performer worker, string description)
+        {
+            Worker = worker;
+            Description = description;
+        }
+
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Ответственный: {Worker.Name}\nОписание задачи: {Description}\n");
+        }
+    }
+    class Warrior
+    {
+        protected int Health;
+        protected int Armor;
+        protected int Damage;
+
+        public Warrior(int health, int armor, int damage)
+        { 
+            Health= health;
+            Armor= armor;
+            Damage= damage;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Health -= damage - Armor;
+        }
+
+        public void ShowInfo()
+        {
+            Console.WriteLine(Health);
+        }
+    }
+    class Knight : Warrior
+    {
+        public Knight(int health, int armor, int damage ): base(health, armor, damage )
+        { 
+            
+        }
+        public void Pray()
+        {
+            Armor += 2;
+        }
+
+    }
+    class Barbarian: Warrior
+    {
+        public int AttackSpeed;
+        public Barbarian(int health, int armor, int damage, int attackSpeed) : base(health, armor, damage * attackSpeed) 
+        {
+            AttackSpeed= attackSpeed;
+        }
+        public void Shout()
+        {
+            Armor -= 2;
+            Health += 10;
         }
     }
 }
