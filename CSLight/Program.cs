@@ -333,7 +333,43 @@ namespace CSLight
 
                         Console.WriteLine(person3); // CSLight.Student*/
 
-            // Upcasting, downcasting
+            // as - converting, is - test if an instance 
+            /*Person person = new Person("Jim");
+            //Person person = new Mentor("Jim", 8); // will work correctly
+            Mentor mentor = person as Mentor;
+
+            Console.WriteLine(mentor == null); // variable equals to null bc convertion was made w/ mistakes, but due to "as" mistakes were not shown
+            if (mentor != null)
+            {
+                Console.WriteLine(mentor.Name);
+                Console.WriteLine(mentor.NumberOfStudents);
+            }
+            else
+            {
+                Console.WriteLine("Error while converting");
+            }
+
+            if (mentor is Mentor) 
+            {
+                Console.WriteLine(mentor.Name);
+                Console.WriteLine(mentor.NumberOfStudents);
+            }
+            else
+            {
+                Console.WriteLine("Not a mentor");
+            }*/
+
+            // enum
+            List <Game> games = new List <Game> ();
+
+            games.Add(new Game("GoD", Genre.Shooter));
+            games.Add(new Game("Gothic", Genre.RPG));
+            games.Add(new Game("God of War", Genre.History));
+
+            foreach (Game game in games) 
+            {
+                game.ShowInfo();
+            }
         }
     }
     class LearningFunctions
@@ -764,6 +800,27 @@ namespace CSLight
         public Student(string name, int averageScore) : base(name)
         {
             AverageScore = averageScore;
+        }
+    }
+    enum Genre
+    {
+        Shooter,
+        RPG,
+        History,
+    }
+    class Game
+    {
+        private string _title;
+        private Genre _genre;
+
+        public Game(string title, Genre genre)
+        {
+            _title = title;
+            _genre = genre;
+        }
+        public void ShowInfo()
+        {
+            Console.WriteLine($"This game title is {_title}, its genre is {_genre}");
         }
     }
 }
