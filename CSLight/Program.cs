@@ -216,16 +216,79 @@ namespace CSLight
                         schedule.ShowAllTasks();*/
 
             // OOP is-a
-            Knight warrior1 = new Knight(120, 30, 40);
-            Barbarian warrior2 = new Barbarian(100, 20, 30, 2);
+            /*            Knight warrior1 = new Knight(120, 30, 40);
+                        Barbarian warrior2 = new Barbarian(100, 20, 30, 2);
 
-            warrior1.TakeDamage(80);
-            warrior2.TakeDamage(80);
+                        warrior1.TakeDamage(80);
+                        warrior2.TakeDamage(80);
 
-            Console.Write("Knight:");
-            warrior1.ShowInfo();
-            Console.Write("Barbarian:");
-            warrior2.ShowInfo();
+                        Console.Write("Knight:");
+                        warrior1.ShowInfo();
+                        Console.Write("Barbarian:");
+                        warrior2.ShowInfo();*/
+
+            // Encapsulation, private filelds, getters setters
+            /*            Render render = new Render();
+                        Player player = new Player(55, 10);
+
+                        render.Draw(player.X, player.Y);*/
+
+            // Encapsulation, more tests
+            /*            Cart cart = new Cart();
+                        cart.ShowProducts();
+                        Console.WriteLine();
+
+                        List<Product> products = new List<Product>{ new Product("Banana"),  new Product("Coconut")};
+
+                        foreach (var product in products)
+                        {
+                            Console.WriteLine(product.Name);
+                        }
+
+                        List<Product> newProductList = new List<Product>();
+
+                        for (int i = 0; i < cart.GetProductsCount(); i++)
+                        {
+                            newProductList.Add(cart.GetProductByIndex(i));
+                        }
+                        Console.WriteLine();
+
+                        newProductList.RemoveAt(0);
+
+                        foreach (var product in newProductList)
+                        {
+                            Console.WriteLine(product.Name);
+                        }
+                        Console.WriteLine();
+                        cart.ShowProducts();
+                        Console.WriteLine();*/
+
+            // virtual methods
+            /*            NonPlayerCharacter[] characters =
+                        {
+                            new NonPlayerCharacter(),
+                            new Farmer(),
+                            new KnightNew(),
+                            new Child(),
+                        };
+
+                        foreach (var character in characters) 
+                        {
+                            character.ShowDescription();
+                            Console.WriteLine(new String('-', 40));
+                        }*/
+
+            //
+            Behavior[] behaviors =
+            {
+                new Walker(),
+                new Jumper(),
+            };
+            foreach (var behavior in behaviors) 
+            {
+                behavior.Update();
+                System.Threading.Thread.Sleep(1000);
+            }
         }
     }
     class LearningFunctions
@@ -398,10 +461,10 @@ namespace CSLight
         protected int Damage;
 
         public Warrior(int health, int armor, int damage)
-        { 
-            Health= health;
-            Armor= armor;
-            Damage= damage;
+        {
+            Health = health;
+            Armor = armor;
+            Damage = damage;
         }
 
         public void TakeDamage(int damage)
@@ -416,9 +479,9 @@ namespace CSLight
     }
     class Knight : Warrior
     {
-        public Knight(int health, int armor, int damage ): base(health, armor, damage )
-        { 
-            
+        public Knight(int health, int armor, int damage) : base(health, armor, damage)
+        {
+
         }
         public void Pray()
         {
@@ -426,17 +489,132 @@ namespace CSLight
         }
 
     }
-    class Barbarian: Warrior
+    class Barbarian : Warrior
     {
         public int AttackSpeed;
-        public Barbarian(int health, int armor, int damage, int attackSpeed) : base(health, armor, damage * attackSpeed) 
+        public Barbarian(int health, int armor, int damage, int attackSpeed) : base(health, armor, damage * attackSpeed)
         {
-            AttackSpeed= attackSpeed;
+            AttackSpeed = attackSpeed;
         }
         public void Shout()
         {
             Armor -= 2;
             Health += 10;
+        }
+    }
+    class Render
+    {
+        public void Draw(int x, int y, char character = '@')
+        {
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(x, y);
+            Console.WriteLine(character);
+            Console.ReadKey(true);
+        }
+    }
+    class Player
+    {
+        private int _x;
+
+        public int X
+        {
+            get
+            {
+                return _x;
+            }
+            private set
+            {
+                _x = value;
+            }
+        }
+        public int Y { get; private set; } // equivalent to public int X, no need in private int _y
+        public Player(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+    }
+    class Cart
+    {
+        private List<Product> _products = new List<Product>();
+        public Cart()
+        {
+            _products.Add(new Product("Apple"));
+            _products.Add(new Product("Bread"));
+            _products.Add(new Product("Milk"));
+        }
+
+        public void ShowProducts()
+        {
+            foreach (Product product in _products)
+            {
+                Console.WriteLine(product.Name);
+            }
+        }
+
+        public Product GetProductByIndex(int index)
+        {
+            return _products.ElementAt(index);
+        }
+
+        public int GetProductsCount()
+        {
+            return _products.Count;
+        }
+    }
+    class Product
+    {
+        public string Name { get; private set; }
+        public Product(string name)
+        {
+            Name = name;
+        }
+    }
+    class NonPlayerCharacter
+    {
+        public virtual void ShowDescription()
+        {
+            Console.WriteLine("Minding my own busines...");
+        }
+    }
+    class Farmer : NonPlayerCharacter
+    {
+        public override void ShowDescription()
+        {
+            base.ShowDescription();
+            Console.WriteLine("Plus I'm a fermer");
+        }
+    }
+    class KnightNew : NonPlayerCharacter
+    {
+        public override void ShowDescription()
+        {
+            Console.WriteLine("I'm a Knight in the night!");
+        }
+    }
+    class Child : NonPlayerCharacter
+    {
+
+    }
+    class Behavior
+    {
+        public virtual void Update()
+        {
+
+        }
+    }
+    class Walker : Behavior
+    {
+        public override void Update()
+        {
+            Console.WriteLine("I'm walking here!");
+        }
+    }
+    class Jumper : Behavior
+    {
+        public override void Update()
+        {
+            Console.WriteLine("Jump around!");
         }
     }
 }
