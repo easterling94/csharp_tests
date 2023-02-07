@@ -278,17 +278,35 @@ namespace CSLight
                             Console.WriteLine(new String('-', 40));
                         }*/
 
-            //
-            Behavior[] behaviors =
-            {
-                new Walker(),
-                new Jumper(),
-            };
-            foreach (var behavior in behaviors) 
-            {
-                behavior.Update();
-                System.Threading.Thread.Sleep(1000);
-            }
+            // setTimeout - System.Threading.Thread.Sleep()
+            /*            Behavior[] behaviors =
+                        {
+                            new Walker(),
+                            new Jumper(),
+                        };
+                        foreach (var behavior in behaviors) 
+                        {
+                            behavior.Update();
+                            System.Threading.Thread.Sleep(1000);
+                        }*/
+
+            // interfaces
+            /*            CarNew carNew = new CarNew();
+                        IMovable carNewMovable = new CarNew();
+
+                        Vehicle car = new Car2();
+                        car.GetCurrentSpeed();
+                        car.Move();*/
+
+            // Static class properties
+            User.Identifications = 10;
+            User user1 = new User();
+            User user2 = new User();
+            user1.ShowInfo();
+            user2.ShowInfo();
+
+            Console.WriteLine(User.Identifications + " - current number of instances");
+
         }
     }
     class LearningFunctions
@@ -615,6 +633,63 @@ namespace CSLight
         public override void Update()
         {
             Console.WriteLine("Jump around!");
+        }
+    }
+    interface IMovable
+    {
+        void Move();
+        void ShowMoveSpeed();
+    }
+    interface IBurnable
+    {
+        void Burn();
+    }
+    class CarNew : Car, IMovable, IBurnable // parent class only one, but interfaces any q-ty
+    {
+        public void Move()
+        {
+
+        }
+        public void ShowMoveSpeed()
+        {
+
+        }
+        public void Burn()
+        {
+
+        }
+    }
+    abstract class Vehicle // abstract class can have declared but not initialized methods and properties
+    {
+        protected float Speed;
+        public abstract void Move();
+
+        public void GetCurrentSpeed()
+        {
+            Console.WriteLine(this.Speed);
+        }
+
+    }
+    class Car2 : Vehicle
+    {
+        public override void Move()
+        {
+            Console.WriteLine("It is a moving car");
+        }
+    }
+    class User
+    {
+        public static int Identifications;
+        public int Identification;
+
+        public User()
+        {
+            Identification = ++Identifications;
+        }
+
+        public void ShowInfo()
+        {
+            Console.WriteLine(Identification);
         }
     }
 }
