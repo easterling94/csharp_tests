@@ -299,14 +299,41 @@ namespace CSLight
                         car.Move();*/
 
             // Static class properties
-            User.Identifications = 10;
-            User user1 = new User();
-            User user2 = new User();
-            user1.ShowInfo();
-            user2.ShowInfo();
+            /*            User.Identifications = 10; // e.g. initial count of users
+                        User user1 = new User();
+                        User user2 = new User();
+                        user1.ShowInfo();
+                        user2.ShowInfo();
+                        int costs = user2.GetSalaRyPerMonth(24);
+                        Console.WriteLine(costs);
+                        Console.WriteLine(User.Identifications + " - current number of instances");*/
 
-            Console.WriteLine(User.Identifications + " - current number of instances");
+            // Structures
+            /*            Vector2 position;
+                        position.X = 10;
+                        position.Y = 20;
+                        Vector2 position2 = new Vector2(20,30);*/
 
+            // Upcasting, downcasting
+            /*            Person person1 = new Person("Oleg");
+                        person1.ShowName();
+
+                        Person person2;
+                        Mentor mentor1 = new Mentor("Tom", 8);
+                        person2 = mentor1;
+                        Console.WriteLine(person2.Name); // upcasting, takes only according methods and props
+
+                        Student student1 = new Student("Jim", 9);
+                        person2 = student1;
+                        Console.WriteLine(person2.Name); // same technique
+
+                        Person person3 = new Student("Rick", 9);
+                        Student student2;
+                        student2 = (Student)person3; // implicit type conversion - person3 type of Student
+
+                        Console.WriteLine(person3); // CSLight.Student*/
+
+            // Upcasting, downcasting
         }
     }
     class LearningFunctions
@@ -681,6 +708,7 @@ namespace CSLight
     {
         public static int Identifications;
         public int Identification;
+        public static int MenHourPrice;
 
         public User()
         {
@@ -690,6 +718,52 @@ namespace CSLight
         public void ShowInfo()
         {
             Console.WriteLine(Identification);
+        }
+        public static int GetSalaryPerDay(int workedHours)
+        {
+            return workedHours * MenHourPrice;
+        }
+        public int GetSalaRyPerMonth(int wokedDays)
+        {
+            return GetSalaryPerDay(8) * wokedDays;
+        }
+    }
+    struct Vector2
+    {
+        public int X, Y;
+        public Vector2(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
+    }
+    class Person
+    {
+        public string Name { get; private set; }
+        public Person(string name)
+        {
+            Name = name;
+        }
+        public void ShowName()
+        {
+            Console.WriteLine($"I'm {Name}");
+        }
+    }
+    class Mentor : Person
+    {
+        public int NumberOfStudents { get; private set; }
+        public Mentor(string name, int numberOfStudents) : base(name)
+        {
+            NumberOfStudents = numberOfStudents;
+        }
+    }
+    class Student : Person
+    {
+        public int AverageScore { get; private set; }
+        public Student(string name, int averageScore) : base(name)
+        {
+            AverageScore = averageScore;
         }
     }
 }
