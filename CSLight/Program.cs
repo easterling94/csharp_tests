@@ -360,15 +360,42 @@ namespace CSLight
             }*/
 
             // enum
-            List <Game> games = new List <Game> ();
+            /*            List <Game> games = new List <Game> ();
 
-            games.Add(new Game("GoD", Genre.Shooter));
-            games.Add(new Game("Gothic", Genre.RPG));
-            games.Add(new Game("God of War", Genre.History));
+                        games.Add(new Game("GoD", Genre.Shooter));
+                        games.Add(new Game("Gothic", Genre.RPG));
+                        games.Add(new Game("God of War", Genre.History));
 
-            foreach (Game game in games) 
+                        foreach (Game game in games) 
+                        {
+                            game.ShowInfo();
+                        }*/
+
+            // Linq
+            List<PlayerNew> players = new List<PlayerNew> 
             {
-                game.ShowInfo();
+                new PlayerNew("John", 100), 
+                new PlayerNew("Clark", 220), 
+                new PlayerNew("Tess", 190) 
+            };
+
+            // old tools
+            List<PlayerNew> filteredPlayers = new List<PlayerNew>();
+            foreach (PlayerNew player in players)
+            {
+                if (player.Level > 200)
+                {
+                    filteredPlayers.Add(player);
+                    Console.WriteLine(player.Login);
+                }
+            }
+
+            // with Linq language
+            var filteredPlayersNew = from PlayerNew player2 in players where player2.Level > 200 select player2;
+            Console.WriteLine(filteredPlayersNew); // enumerable 
+            foreach (var player in filteredPlayersNew)
+            {
+                Console.WriteLine(player.Login);
             }
         }
     }
@@ -821,6 +848,17 @@ namespace CSLight
         public void ShowInfo()
         {
             Console.WriteLine($"This game title is {_title}, its genre is {_genre}");
+        }
+    }
+    class PlayerNew
+    {
+        public string Login { get; private set; }
+        public int Level { get; private set; }
+
+        public PlayerNew(string login, int level)
+        {
+            Login = login;
+            Level = level;
         }
     }
 }
